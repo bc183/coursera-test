@@ -8,7 +8,7 @@
     lunchController.$inject = ['$scope'];
     function lunchController($scope)
     {
-        $scope.input;
+        $scope.input="";
         $scope.message="";
         $scope.border;
         $scope.color;
@@ -16,7 +16,7 @@
         {
             var messageTemp = generateMessage($scope.input);
             $scope.message = messageTemp;
-            if($scope.message==="Please input some value!" || $scope.message==="Too Much!")
+            if($scope.message==="Please enter data first!")
             {
                 $scope.color= {"color" : "red"}
                 $scope.border={"border-color" : "red"}
@@ -33,7 +33,7 @@
     {
         if(string.trim().length===0)
         {
-            return "Please input some value!";
+            return "Please enter data first!";
         }
         var array = string.split(",");
         var count=0;
@@ -44,9 +44,13 @@
                 count++;
             }
         }
-        if(count<=3)
+        if(count<=3 && count>0)
         {
             return "Enjoy!";
+        }
+        if(count==0)
+        {
+            return "Please enter data first!";
         }
         return "Too Much!";
     }
